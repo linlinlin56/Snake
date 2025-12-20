@@ -17,14 +17,14 @@ includelib			comctl32.lib
 include				masm32.inc
 includelib			masm32.lib
 
-;ÉêÃ÷¼¸¸öº¯Êı
+;ç”³æ˜å‡ ä¸ªå‡½æ•°
 printf				PROTO C:dword, :vararg
 srand				PROTO C:dword, :vararg
 rand				PROTO C:vararg
 memset				PROTO C:dword, :dword, :dword, :vararg
 sprintf				PROTO C:dword, :dword, :dword, :vararg
 
-;¶¨ÒåĞèÒªÓÃµ½µÄid
+;å®šä¹‰éœ€è¦ç”¨åˆ°çš„id
 IDI_ICON			equ				201
 ID_TIMER			equ				1
 ID_UP				equ				101
@@ -49,48 +49,48 @@ LF					equ				0ah
 .data
 hInstance			dd				?
 hWinMain			dd				?
-dwX					dd				500		dup(0);´æ´¢ÉßµÄ×ø±ê
+dwX					dd				500		dup(0);å­˜å‚¨è›‡çš„åæ ‡
 dwY					dd				500		dup(0)
-dwXT				dd				500		dup(0);ÓÃÓÚ´æ´¢´òÓ¡×ø±êÖÕµã
+dwXT				dd				500		dup(0);ç”¨äºå­˜å‚¨æ‰“å°åæ ‡ç»ˆç‚¹
 dwYT				dd				500		dup(0)
 printBuffer			byte			10		dup(0)
 dwNextX				dd				?
 dwNextY				dd				?
-dwXTemp				dd				?			;ÁÙÊ±
-dwYTemp				dd				?			;ÁÙÊ±		
-dwSnakeLen			dd				?			;ÉßµÄ³¤¶È
-dwSnakeSize			dd				10			;Éß´óĞ¡,ĞèÒªÉèÖÃÉß´óĞ¡Îª²½³¤µÄÒ»°ë²ÅÄÜÊµÏÖÍ·²¿Åöµ½¶«Î÷¼´¿É³ÔÏÂ
-dwStep				dd				20			;²½³¤£¬¼´Ã¿´ÎÒÆ¶¯µÄ¾àÀë
-dwTime				dd				300			;Ë¢ĞÂÊ±¼ä¼ä¸ô
-dwDirection			dd				?			;1±íÊ¾ÉÏ£¬2±íÊ¾ÏÂ£¬3±íÊ¾×ó£¬4±íÊ¾ÓÒ£¬0±íÊ¾Í£Ö¹
-dwDirectionTemp		dd				0			;ÓÃÓÚÁÙÊ±±£´æÒÆ¶¯·½Ïò
-dwRandX				dd				?			;±£´æËæ»ú²úÉúµÄ×ø±ê
+dwXTemp				dd				?			;ä¸´æ—¶
+dwYTemp				dd				?			;ä¸´æ—¶		
+dwSnakeLen			dd				?			;è›‡çš„é•¿åº¦
+dwSnakeSize			dd				10			;è›‡å¤§å°,éœ€è¦è®¾ç½®è›‡å¤§å°ä¸ºæ­¥é•¿çš„ä¸€åŠæ‰èƒ½å®ç°å¤´éƒ¨ç¢°åˆ°ä¸œè¥¿å³å¯åƒä¸‹
+dwStep				dd				20			;æ­¥é•¿ï¼Œå³æ¯æ¬¡ç§»åŠ¨çš„è·ç¦»
+dwTime				dd				300			;åˆ·æ–°æ—¶é—´é—´éš”
+dwDirection			dd				?			;1è¡¨ç¤ºä¸Šï¼Œ2è¡¨ç¤ºä¸‹ï¼Œ3è¡¨ç¤ºå·¦ï¼Œ4è¡¨ç¤ºå³ï¼Œ0è¡¨ç¤ºåœæ­¢
+dwDirectionTemp		dd				0			;ç”¨äºä¸´æ—¶ä¿å­˜ç§»åŠ¨æ–¹å‘
+dwRandX				dd				?			;ä¿å­˜éšæœºäº§ç”Ÿçš„åæ ‡
 dwRandY				dd				?			
-dwModuleflag		dd				1			;±íÊ¾Ñ¡ÔñµÄÄ£Ê½£¬0¡¢1¡¢2¡¢3·Ö±ğ´ú±íÈëÃÅ¡¢¼òµ¥¡¢½ø½×¡¢À§ÄÑÄ£Ê½
-Num					byte			"%d", 0		;Êä³öÊı×Ö
-Blank				byte			" ", 0		;Êä³ö¿Õ¸ñ
-Line				byte			0ah, 0		;ÓÃÓÚÊä³ö¿ÕĞĞ
+dwModuleflag		dd				1			;è¡¨ç¤ºé€‰æ‹©çš„æ¨¡å¼ï¼Œ0ã€1ã€2ã€3åˆ†åˆ«ä»£è¡¨å…¥é—¨ã€ç®€å•ã€è¿›é˜¶ã€å›°éš¾æ¨¡å¼
+Num					byte			"%d", 0		;è¾“å‡ºæ•°å­—
+Blank				byte			" ", 0		;è¾“å‡ºç©ºæ ¼
+Line				byte			0ah, 0		;ç”¨äºè¾“å‡ºç©ºè¡Œ
 szButton			byte			"button", 0
-szButton_Stop		byte			"ÔİÍ£", 0
-szButton_Restart	byte			"ÖØÍæ", 0
+szButton_Stop		byte			"æš‚åœ", 0
+szButton_Restart	byte			"é‡ç©", 0
 hButton				dd				?
-ButtonFlag			dd				0			;0±íÊ¾Í£Ö¹£¬1±íÊ¾ÔË¶¯£¬2±íÊ¾ÖØÍæ
+ButtonFlag			dd				0			;0è¡¨ç¤ºåœæ­¢ï¼Œ1è¡¨ç¤ºè¿åŠ¨ï¼Œ2è¡¨ç¤ºé‡ç©
 szStatic			byte			"static", 0
 szEdit				byte			"edit", 0
-dwSCORE				db				"·ÖÊı:", 0
-dwSPEED				byte			"ËÙ¶È:", 0
+dwSCORE				db				"åˆ†æ•°:", 0
+dwSPEED				byte			"é€Ÿåº¦:", 0
 hScore				dd				?
-szBoxTitle			db				"ÓÎÏ·ÌáÊ¾", 0
-szBoxText			db				"ÓÎÏ·½áÊø£¡", 0
-; SpeedFlag			dd				0;	×ÔÓÉ¼ÓËÙ±êÖ¾ 
-dwMODULE			db				"Ä£Ê½:", 0
-dwMODULESET			byte			'Ä£Ê½ÉèÖÃ', 0
-dwMODULESTARTER		byte			'ÈëÃÅ', 0
-dwMODULESIMPLE		byte			'¼òµ¥', 0
-dwMODULEADVANCED	byte			'½ø½×', 0
-dwMODULEHARD		byte			'À§ÄÑ', 0
+szBoxTitle			db				"æ¸¸æˆæç¤º", 0
+szBoxText			db				"æ¸¸æˆç»“æŸï¼", 0
+; SpeedFlag			dd				0;	è‡ªç”±åŠ é€Ÿæ ‡å¿— 
+dwMODULE			db				"æ¨¡å¼:", 0
+dwMODULESET			byte			'æ¨¡å¼è®¾ç½®', 0
+dwMODULESTARTER		byte			'å…¥é—¨', 0
+dwMODULESIMPLE		byte			'ç®€å•', 0
+dwMODULEADVANCED	byte			'è¿›é˜¶', 0
+dwMODULEHARD		byte			'å›°éš¾', 0
 
-;wk ÕÏ°­ÎïÏà¹Ø
+;wk éšœç¢ç‰©ç›¸å…³
 barrierX 			dd				500 	dup(0)
 barrierY 			dd				500		dup(0)
 barrierXT			dd				500		dup(0)
@@ -99,50 +99,50 @@ barrierNum			dd				?
 numbe				byte			"%d", 0ah, 0	
 hBarrierPen 		HPEN			?
 
-;×ÖÌåÏà¹Ø
+;å­—ä½“ç›¸å…³
 hFont_small			HFONT			?
 hFont_big			HFONT			?
 hFont_Show			HFONT			?
 hFont_digit			HFONT			?
-szYaHei				byte			'Î¢ÈíÑÅºÚ', 0
-szShuTi				byte			'·½ÕıÊæÌå', 0
+szYaHei				byte			'å¾®è½¯é›…é»‘', 0
+szShuTi				byte			'æ–¹æ­£èˆ’ä½“', 0
 szMVBoli			byte			'MV Boli', 0
 
 
-;»­Ë¢»­±Ê¾ä±ú
+;ç”»åˆ·ç”»ç¬”å¥æŸ„
 hWhiteBrush			HBRUSH			?
 hBorderPen			HPEN			?
 hSnakeHeadPen		HPEN			?
 hSnakeBodyPen		HPEN			?
 hFoodPen			HPEN			?
 
-;¿ØÖÆµ±Ç°ÏÔÊ¾Ò³ÃæµÄflag
-menuFlag			byte			0	;0:¿ªÊ¼²Ëµ¥;1:ÓÎÏ·½çÃæ;2:ÉèÖÃËÙ¶È;3:ÉèÖÃÄ£Ê½...
-;¿ØÖÆÊÇ·ñÓĞ"¼ÌĞø"°´Å¥µÄflag
+;æ§åˆ¶å½“å‰æ˜¾ç¤ºé¡µé¢çš„flag
+menuFlag			byte			0	;0:å¼€å§‹èœå•;1:æ¸¸æˆç•Œé¢;2:è®¾ç½®é€Ÿåº¦;3:è®¾ç½®æ¨¡å¼...
+;æ§åˆ¶æ˜¯å¦æœ‰"ç»§ç»­"æŒ‰é’®çš„flag
 continueBtnFlag		byte			0
 
 .const
-szClassName			db				'Ì°³ÔÉß', 0
-szSetModule			byte			'Ñ¡ÔñÄ£Ê½', 0
-szHelp				byte			'°ïÖú', 0
-szAbout				byte			'¹ØÓÚ', 0
-szNewGame			byte			'ĞÂÓÎÏ·', 0
-szContinue			byte			'¼ÌĞø', 0
-szHelpText			byte			'Ê¹ÓÃW¡¢A¡¢S¡¢D»ò¡ü¡¢¡ı¡¢¡û¡¢¡ú¼ü·Ö±ğ¿ØÖÆÌ°³ÔÉßÏòÉÏÏÂ×óÓÒ×ªÏò£¬ÒÔ³Ôµ½³ÈÉ«µÄÊ³ÎïÔö³¤ÉíÌå²¢»ñµÃ·ÖÊı¡£', LF, LF
-szHelpText2			byte			'Ä£Ê½ËµÃ÷:', LF,
-									'ÈëÃÅ: ×÷ÎªÒ»Ìõ³õ³öÃ©Â®µÄĞ¡Éß£¬Ì°³ÔÉß½«ÒÔ½ÏÂıµÄÒÆ¶¯ËÙ¶È½÷É÷µØÁÔ²¶Ê³Îï', LF,
-									'¼òµ¥: Ì°³ÔÉßÏ°µÃÁËÒ»¶¨µÄ²¶ÁÔ¾­Ñé£¬ÏÖÔÚËü²¶ÁÔÊ±µÄÒÆ¶¯ËÙ¶È±äµÃ¸ü¿ìÁË', LF,
-									'¡üÕâÊÇÄ¬ÈÏµÄÄ£Ê½', LF,
-									'½ø½×: Ì°³ÔÉß×ìÑ÷ÄÑÄÍ£¬¿ÊÍû²¶Ê³£¬Ëü½«´ÓÁÔ²¶µÄÊ³ÎïÖĞ¼³È¡ÄÜÁ¿£¬»ñµÃµİÔöµÄÒÆ¶¯ËÙ¶È', LF,
-									'À§ÄÑ: ÄãÒÑ¾­ÊÇÒ»Ìõ³ÉÊìµÄ´óÉßÁË£¬Ì°³ÔÉß½«ÒÔÈ«ËÙÁÔ²¶Ê³Îï', 0
-szAboutText			byte			'±¾ÓÎÏ·ÊÇ2022±±¾©Àí¹¤´óÑ§»ã±àÓïÑÔÓë½Ó¿Ú¼¼Êõ¿Î³Ì·Ö×éÊµÑé×÷Òµ³É¹û£¬¹±Ï×Õß:', LF,
+szClassName			db				'è´ªåƒè›‡', 0
+szSetModule			byte			'é€‰æ‹©æ¨¡å¼', 0
+szHelp				byte			'å¸®åŠ©', 0
+szAbout				byte			'å…³äº', 0
+szNewGame			byte			'æ–°æ¸¸æˆ', 0
+szContinue			byte			'ç»§ç»­', 0
+szHelpText			byte			'ä½¿ç”¨Wã€Aã€Sã€Dæˆ–â†‘ã€â†“ã€â†ã€â†’é”®åˆ†åˆ«æ§åˆ¶è´ªåƒè›‡å‘ä¸Šä¸‹å·¦å³è½¬å‘ï¼Œä»¥åƒåˆ°æ©™è‰²çš„é£Ÿç‰©å¢é•¿èº«ä½“å¹¶è·å¾—åˆ†æ•°ã€‚', LF, LF
+szHelpText2			byte			'æ¨¡å¼è¯´æ˜:', LF,
+									'å…¥é—¨: ä½œä¸ºä¸€æ¡åˆå‡ºèŒ…åºçš„å°è›‡ï¼Œè´ªåƒè›‡å°†ä»¥è¾ƒæ…¢çš„ç§»åŠ¨é€Ÿåº¦è°¨æ…åœ°çŒæ•é£Ÿç‰©', LF,
+									'ç®€å•: è´ªåƒè›‡ä¹ å¾—äº†ä¸€å®šçš„æ•çŒç»éªŒï¼Œç°åœ¨å®ƒæ•çŒæ—¶çš„ç§»åŠ¨é€Ÿåº¦å˜å¾—æ›´å¿«äº†', LF,
+									'â†‘è¿™æ˜¯é»˜è®¤çš„æ¨¡å¼', LF,
+									'è¿›é˜¶: è´ªåƒè›‡å˜´ç—’éš¾è€ï¼Œæ¸´æœ›æ•é£Ÿï¼Œå®ƒå°†ä»çŒæ•çš„é£Ÿç‰©ä¸­æ±²å–èƒ½é‡ï¼Œè·å¾—é€’å¢çš„ç§»åŠ¨é€Ÿåº¦', LF,
+									'å›°éš¾: ä½ å·²ç»æ˜¯ä¸€æ¡æˆç†Ÿçš„å¤§è›‡äº†ï¼Œè´ªåƒè›‡å°†ä»¥å…¨é€ŸçŒæ•é£Ÿç‰©', 0
+szAboutText			byte			'æœ¬æ¸¸æˆæ˜¯2022åŒ—äº¬ç†å·¥å¤§å­¦æ±‡ç¼–è¯­è¨€ä¸æ¥å£æŠ€æœ¯è¯¾ç¨‹åˆ†ç»„å®éªŒä½œä¸šæˆæœï¼Œè´¡çŒ®è€…:', LF,
 									'rpy, wk, jjy', LF,
-									'ÊµÑéµÄ²¿·ÖË¼Â·²Î¿¼ÁËÍøÂç²©¿Í¡£', 0
+									'å®éªŒçš„éƒ¨åˆ†æ€è·¯å‚è€ƒäº†ç½‘ç»œåšå®¢ã€‚', 0
 
 .code
 ;***************************************************************************************
 ;
-;Ëæ»úÊıÉú³Éº¯Êı
+;éšæœºæ•°ç”Ÿæˆå‡½æ•°
 ;
 ;***************************************************************************************
 _Rand				proc	
@@ -150,7 +150,7 @@ _Rand				proc
 					local @stTime:SYSTEMTIME
 					invoke GetLocalTime, addr @stTime
 					movzx eax, @stTime.wMilliseconds
-					invoke srand, eax					;¸üĞÂÖÖ×Ó
+					invoke srand, eax					;æ›´æ–°ç§å­
 					invoke rand
 					mov ebx, 19
 					div ebx
@@ -172,17 +172,17 @@ _Rand				endp
 
 ;***************************************************************************************
 ;
-;³õÊ¼»¯º¯Êı£¬ÓÃÓÚ³õÊ¼»¯¼Ä´æÆ÷µÄÖµ¼°»­±Ê»­Ë¢¶ÔÏó¡£
+;åˆå§‹åŒ–å‡½æ•°ï¼Œç”¨äºåˆå§‹åŒ–å¯„å­˜å™¨çš„å€¼åŠç”»ç¬”ç”»åˆ·å¯¹è±¡ã€‚
 ;
 ;***************************************************************************************
 _Init				proc
-					;½«±£´æ×ø±êµÄÁ½¸öÊı×éÈ«²¿³õÊ¼»¯Îª0
+					;å°†ä¿å­˜åæ ‡çš„ä¸¤ä¸ªæ•°ç»„å…¨éƒ¨åˆå§‹åŒ–ä¸º0
 					invoke			memset, addr dwX, 0, sizeof dwX
 					invoke			memset, addr dwY, 0, sizeof dwY
 					invoke			memset, addr dwXT, 0, sizeof dwXT
 					invoke			memset, addr dwYT, 0, sizeof dwYT
 
-					;³õÊ¼µÚÒ»¸öµã
+					;åˆå§‹ç¬¬ä¸€ä¸ªç‚¹
 					mov eax, 215
 					mov ebx, 0
 					mov dwX[ebx], eax
@@ -194,22 +194,22 @@ _Init				proc
 					add eax, dwSnakeSize
 					mov dwYT[ebx], eax
 
-					;³õÊ¼»¯µÚÒ»¸öÁÔÎïµÄÎ»ÖÃ
+					;åˆå§‹åŒ–ç¬¬ä¸€ä¸ªçŒç‰©çš„ä½ç½®
 					invoke _Rand
 					mov eax, dwRandX
 					mov dwNextX, eax
 					mov eax, dwRandY
 					mov dwNextY, eax
 
-					;³õÊ¼»¯Éß³¤¶È
+					;åˆå§‹åŒ–è›‡é•¿åº¦
 					mov dwSnakeLen, 1
 
-					;³õÊ¼»¯·½Ïò
+					;åˆå§‹åŒ–æ–¹å‘
 					mov dwDirection, 2
 
-					;wk,ÕÏ°­Îï³õÊ¼¸öÊıÎª 5
+					;wk,éšœç¢ç‰©åˆå§‹ä¸ªæ•°ä¸º 5
 					mov				barrierNum, 5
-					;ÕÏ°­ÎïÎ»ÖÃ³õÊ¼»¯
+					;éšœç¢ç‰©ä½ç½®åˆå§‹åŒ–
 					mov esi, 0
 					.repeat
 						;push esi
@@ -253,7 +253,7 @@ _Init				endp
 
 ;***************************************************************************************
 ;
-;ÉèÖÃ×ÖÌå
+;è®¾ç½®å­—ä½“
 ;
 ;***************************************************************************************
 _createFont			proc
@@ -311,36 +311,36 @@ _createFont			endp
 
 ;***************************************************************************************
 ;
-;ÉèÖÃ»­Ë¢»­±Ê
+;è®¾ç½®ç”»åˆ·ç”»ç¬”
 ;
 ;***************************************************************************************
 _createPens			proc
-					;³õÊ¼»¯±³¾°»­Ë¢
-					mov				eax, 02E1A1Ah		; BGR¸ñÊ½£¨¶ÔÓ¦RGB #1A1A2E£©
+					;åˆå§‹åŒ–èƒŒæ™¯ç”»åˆ·
+					mov				eax, 02E1A1Ah		; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #1A1A2Eï¼‰
 					invoke			CreateSolidBrush, eax
 					mov				hWhiteBrush, eax
 
-					;ÓÎÏ·±ß¿ò»­±Ê
-					mov				eax, 0F0C94Ch	; BGR¸ñÊ½£¨¶ÔÓ¦RGB #4CC9F0£©
-					invoke			CreatePen, PS_INSIDEFRAME, 2, eax	; ±ß¿ò¼Ó´Öµ½2ÏñËØ
+					;æ¸¸æˆè¾¹æ¡†ç”»ç¬”
+					mov				eax, 0F0C94Ch	; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #4CC9F0ï¼‰
+					invoke			CreatePen, PS_INSIDEFRAME, 2, eax	; è¾¹æ¡†åŠ ç²—åˆ°2åƒç´ 
 					mov				hBorderPen, eax
 
-					;ÉßÍ·ÉßÉí»­±Ê
-					mov				eax, 000B038h	; BGR¸ñÊ½£¨¶ÔÓ¦RGB #38B000£©
+					;è›‡å¤´è›‡èº«ç”»ç¬”
+					mov				eax, 000B038h	; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #38B000ï¼‰
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeHeadPen, eax
 
-					mov				eax, 000E070h	; BGR¸ñÊ½£¨¶ÔÓ¦RGB #70E000£©
+					mov				eax, 000E070h	; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #70E000ï¼‰
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeBodyPen, eax
 
-					;ÁÔÎï»­±Ê
-					mov				eax, 08525F7h	; BGR¸ñÊ½£¨¶ÔÓ¦RGB #F72585£©
+					;çŒç‰©ç”»ç¬”
+					mov				eax, 08525F7h	; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #F72585ï¼‰
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hFoodPen, eax
 
-					;wk ÕÏ°­Îï»­±Ê
-					mov				eax, 7D756Ch	; BGR¸ñÊ½£¨¶ÔÓ¦RGB #6C757D£©
+					;wk éšœç¢ç‰©ç”»ç¬”
+					mov				eax, 7D756Ch	; BGRæ ¼å¼ï¼ˆå¯¹åº”RGB #6C757Dï¼‰
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hBarrierPen, eax
 
@@ -350,7 +350,7 @@ _createPens			endp
 
 ;***************************************************************************************
 ;
-;»­Ïßº¯Êı£¬´Ó(x1, y1)»­Ïßµ½(x2, y2)
+;ç”»çº¿å‡½æ•°ï¼Œä»(x1, y1)ç”»çº¿åˆ°(x2, y2)
 ;
 ;***************************************************************************************
 _DrawLine			proc			_hDC, X1, Y1, X2, Y2
@@ -362,7 +362,7 @@ _DrawLine			endp
 
 ;***************************************************************************************
 ;
-;µã¸üĞÂº¯Êı£¬¸Ãº¯ÊıÃ¿µ÷ÓÃÒ»´Î£¬¸üĞÂÒ»´ÎÎ»ÖÃ
+;ç‚¹æ›´æ–°å‡½æ•°ï¼Œè¯¥å‡½æ•°æ¯è°ƒç”¨ä¸€æ¬¡ï¼Œæ›´æ–°ä¸€æ¬¡ä½ç½®
 ;
 ;***************************************************************************************
 _UpdatePosition		proc	_hWnd
@@ -376,29 +376,29 @@ _UpdatePosition		proc	_hWnd
 					mov eax, dwY[esi]
 					mov dwYTemp, eax
 
-					;Çó³öÏÂÒ»¸öµãµÄÎ»ÖÃ
+					;æ±‚å‡ºä¸‹ä¸€ä¸ªç‚¹çš„ä½ç½®
 					mov esi, dwStep
 					mov edx, dwDirection
-					.if				edx == 1								;±íÊ¾ÏòÉÏ×ß
+					.if				edx == 1								;è¡¨ç¤ºå‘ä¸Šèµ°
 									mov eax, dwYTemp
 									sub eax, esi
 									mov dwYTemp, eax
-					.elseif			edx == 2								;±íÊ¾ÏòÏÂ×ß
+					.elseif			edx == 2								;è¡¨ç¤ºå‘ä¸‹èµ°
 									mov eax, dwYTemp
 									add eax, esi
 									mov dwYTemp, eax
-					.elseif			edx == 3								;±íÊ¾Ïò×ó
+					.elseif			edx == 3								;è¡¨ç¤ºå‘å·¦
 									mov eax, dwXTemp
 									sub eax, esi
 									mov dwXTemp, eax
-					.elseif			edx == 4								;±íÊ¾ÏòÓÒ
+					.elseif			edx == 4								;è¡¨ç¤ºå‘å³
 									mov eax, dwXTemp
 									add eax, esi
 									mov dwXTemp, eax
 					.endif
 
-					;ÅĞ¶ÏÏÂÒ»¸öµãÊÇ·ñÔÚÉßÖĞ£¬ÅĞ¶ÏÊÇ·ñÅöµ½±ß½ç
-					.if dwDirection != 0															;ÔÚÉßÎ´Í£Ö¹µÄÇé¿öÏÂ²Å½øĞĞÅĞ¶Ï
+					;åˆ¤æ–­ä¸‹ä¸€ä¸ªç‚¹æ˜¯å¦åœ¨è›‡ä¸­ï¼Œåˆ¤æ–­æ˜¯å¦ç¢°åˆ°è¾¹ç•Œ
+					.if dwDirection != 0															;åœ¨è›‡æœªåœæ­¢çš„æƒ…å†µä¸‹æ‰è¿›è¡Œåˆ¤æ–­
 						mov esi, dwSnakeLen
 						imul esi, 4
 						.repeat
@@ -406,21 +406,21 @@ _UpdatePosition		proc	_hWnd
 							mov eax, dwX[esi]
 							mov ebx, dwY[esi]
 							.if (dwXTemp > 410 || dwXTemp < 30 || dwYTemp > 410 || dwYTemp < 30) || (eax == dwXTemp && ebx == dwYTemp)
-									invoke KillTimer, _hWnd, ID_TIMER								;¹Ø±Õ¼ÆÊ±Æ÷
+									invoke KillTimer, _hWnd, ID_TIMER								;å…³é—­è®¡æ—¶å™¨
 									mov	dwXTemp, 0
 									mov dwYTemp, 0
 									mov dwDirection, 0
-									mov ButtonFlag, 2												;ĞŞ¸ÄÖØÍæ±êÖ¾
-									invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Restart ;°´Å¥ÏÔÊ¾ÖØÍæ
-									;µ¯³öÖØÍæÌáÊ¾¿ò
+									mov ButtonFlag, 2												;ä¿®æ”¹é‡ç©æ ‡å¿—
+									invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Restart ;æŒ‰é’®æ˜¾ç¤ºé‡ç©
+									;å¼¹å‡ºé‡ç©æç¤ºæ¡†
 									invoke	MessageBox, NULL, offset szBoxText, offset szBoxTitle, MB_OK
-									.break															;Ìø³öÑ­»·
+									.break															;è·³å‡ºå¾ªç¯
 							.endif
 						.until esi == 0
 					.endif
 
-					;wk ÅĞ¶ÏÉßÊÇ·ñÅöÉÏÕÏ°­Îï
-					.if dwDirection != 0															;ÔÚÉßÎ´Í£Ö¹µÄÇé¿öÏÂ²Å½øĞĞÅĞ¶Ï
+					;wk åˆ¤æ–­è›‡æ˜¯å¦ç¢°ä¸Šéšœç¢ç‰©
+					.if dwDirection != 0															;åœ¨è›‡æœªåœæ­¢çš„æƒ…å†µä¸‹æ‰è¿›è¡Œåˆ¤æ–­
 						mov esi, barrierNum
 						imul esi, 4
 						.repeat
@@ -428,26 +428,26 @@ _UpdatePosition		proc	_hWnd
 							mov eax, barrierX[esi]
 							mov ebx, barrierY[esi]
 							.if (eax == dwXTemp && ebx == dwYTemp)
-									invoke KillTimer, _hWnd, ID_TIMER								;¹Ø±Õ¼ÆÊ±Æ÷
+									invoke KillTimer, _hWnd, ID_TIMER								;å…³é—­è®¡æ—¶å™¨
 									mov	dwXTemp, 0
 									mov dwYTemp, 0
 									mov dwDirection, 0
-									mov ButtonFlag, 2												;ĞŞ¸ÄÖØÍæ±êÖ¾
-									invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Restart ;°´Å¥ÏÔÊ¾ÖØÍæ
-									;µ¯³öÖØÍæÌáÊ¾¿ò
+									mov ButtonFlag, 2												;ä¿®æ”¹é‡ç©æ ‡å¿—
+									invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Restart ;æŒ‰é’®æ˜¾ç¤ºé‡ç©
+									;å¼¹å‡ºé‡ç©æç¤ºæ¡†
 									invoke	MessageBox, NULL, offset szBoxText, offset szBoxTitle, MB_OK
-									.break															;Ìø³öÑ­»·
+									.break															;è·³å‡ºå¾ªç¯
 							.endif
 						.until esi == 0
 					.endif
 
-					;ÅĞ¶Ïµ±Ç°ÊÇ·ñÍ£Ö¹£¬Í£Ö¹Ö®ºó½«ÏÂÒ»¸öµãµÄ×ø±êÖÃÎª0
+					;åˆ¤æ–­å½“å‰æ˜¯å¦åœæ­¢ï¼Œåœæ­¢ä¹‹åå°†ä¸‹ä¸€ä¸ªç‚¹çš„åæ ‡ç½®ä¸º0
 					.if			dwDirection == 0								
 									mov	dwXTemp, 0
 									mov dwYTemp, 0
 					.endif
 
-					;jjy ÅĞ¶ÏÄ£Ê½ÊÇ·ñÎª½ø½×Ä£Ê½
+					;jjy åˆ¤æ–­æ¨¡å¼æ˜¯å¦ä¸ºè¿›é˜¶æ¨¡å¼
 					.if dwModuleflag == 2
 						mov esi, dwSnakeLen
 						.repeat
@@ -460,16 +460,16 @@ _UpdatePosition		proc	_hWnd
 							.endif
 							mov ecx,500
 							sub ecx,eax
-							mov dwTime, ecx										;Ëæ×Å³¤¶È¸Ä±äËÙ¶È
+							mov dwTime, ecx										;éšç€é•¿åº¦æ”¹å˜é€Ÿåº¦
 							invoke SetTimer, _hWnd, ID_TIMER, dwTime, NULL          
 							.break
 						.until dwDirection == 0
 					.endif
 
-					;»æÖÆ·ÖÊı
+					;ç»˜åˆ¶åˆ†æ•°
 					mov eax, dwSnakeLen
 					sub eax, 1
-					invoke 	sprintf, offset printBuffer, offset Num, eax ;½«·ÖÊı×ª»¯Îª×Ö·û´®
+					invoke 	sprintf, offset printBuffer, offset Num, eax ;å°†åˆ†æ•°è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 					invoke 	SendMessage,hScore,WM_SETTEXT,0,offset printBuffer
 					
 					invoke	GetDlgItem, _hWnd, ID_MODULESHOW
@@ -485,34 +485,34 @@ _UpdatePosition		proc	_hWnd
 
 					mov	eax, 600
 					sub	eax, dwTime
-					invoke 	sprintf, offset printBuffer, offset Num, eax ;½«·ÖÊı×ª»¯Îª×Ö·û´®
+					invoke 	sprintf, offset printBuffer, offset Num, eax ;å°†åˆ†æ•°è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 					invoke	GetDlgItem, _hWnd, ID_SpeedShow
 					invoke  SetWindowText, eax, offset printBuffer
 
-					;ÅĞ¶Ï¸ÃµãºÍºÚµãÊÇ·ñÏàµÈ
+					;åˆ¤æ–­è¯¥ç‚¹å’Œé»‘ç‚¹æ˜¯å¦ç›¸ç­‰
 					mov eax, dwXTemp
 					mov ebx, dwYTemp
-					.if eax == dwNextX && ebx == dwNextY && dwXTemp != 0;ÏàµÈÔò½«¸Ãµã¼ÓÈëµ½Êı×éÖĞ
+					.if eax == dwNextX && ebx == dwNextY && dwXTemp != 0;ç›¸ç­‰åˆ™å°†è¯¥ç‚¹åŠ å…¥åˆ°æ•°ç»„ä¸­
 									mov esi, dwSnakeLen
 									imul esi, 4 
 									mov eax, dwNextX
 									mov ebx, dwNextY
 									mov dwX[esi], eax
 									add eax, dwSnakeSize
-									mov dwXT[esi], eax					;¸üĞÂ´òÓ¡ÖÕµã×ø±ê
+									mov dwXT[esi], eax					;æ›´æ–°æ‰“å°ç»ˆç‚¹åæ ‡
 									mov dwY[esi], ebx
 									add ebx, dwSnakeSize
 									mov dwYT[esi], ebx
 									add dwSnakeLen, 1
 
-									;¸üĞÂºÚµãµÄÎ»ÖÃ
+									;æ›´æ–°é»‘ç‚¹çš„ä½ç½®
 									invoke _Rand
 									mov eax, dwRandX
 									mov dwNextX, eax
 									mov eax, dwRandY
 									mov dwNextY, eax
 
-									;ÅĞ¶Ï²úÉúµÄµãÊÇ·ñÔÚÉßÖĞ
+									;åˆ¤æ–­äº§ç”Ÿçš„ç‚¹æ˜¯å¦åœ¨è›‡ä¸­
 									mov esi, dwSnakeLen
 									imul esi, 4
 									.repeat
@@ -521,20 +521,20 @@ _UpdatePosition		proc	_hWnd
 										mov ebx, dwY[esi]
 										.if eax == dwNextX
 											.if ebx == dwNextY
-												;Èç¹û´æÔÚÏàµÈÔò¸üĞÂÁÔÎïµÄÎ»ÖÃ
+												;å¦‚æœå­˜åœ¨ç›¸ç­‰åˆ™æ›´æ–°çŒç‰©çš„ä½ç½®
 												invoke _Rand
 												mov eax, dwRandX
 												mov dwNextX, eax
 												mov eax, dwRandY
 												mov dwNextY, eax
-												;Ñ­»·½øĞĞÅĞ¶ÏÅĞ¶Ï
+												;å¾ªç¯è¿›è¡Œåˆ¤æ–­åˆ¤æ–­
 												mov esi, dwSnakeLen
 												imul esi, 4
 											.endif
 										.endif
 									.until esi == 0
 
-									;wk ÅĞ¶ÏÉú³ÉµÄµãÊÇ·ñÔÚÕÏ°­ÎïÖĞ
+									;wk åˆ¤æ–­ç”Ÿæˆçš„ç‚¹æ˜¯å¦åœ¨éšœç¢ç‰©ä¸­
 									mov esi, 0
 									.repeat
 										mov eax, barrierX[esi]
@@ -569,10 +569,10 @@ _UpdatePosition		proc	_hWnd
 										imul ebx, 4
 									.until esi == ebx
 
-					.elseif dwXTemp != 0;²»ÏàµÈ£¬Ôò½«Ô­ÓĞµÄÊı×é´Ó0µ½esiÒÀ´ÎµİÍÆ¸³Öµ
+					.elseif dwXTemp != 0;ä¸ç›¸ç­‰ï¼Œåˆ™å°†åŸæœ‰çš„æ•°ç»„ä»0åˆ°esiä¾æ¬¡é€’æ¨èµ‹å€¼
 									mov esi, dwSnakeLen
 									imul esi, 4
-									mov eax, dwXTemp			;½«¼ÆËã³öÀ´µÄÖµ¸³¸øÄ©Î²
+									mov eax, dwXTemp			;å°†è®¡ç®—å‡ºæ¥çš„å€¼èµ‹ç»™æœ«å°¾
 									mov dwX[esi], eax
 									add eax, dwSnakeSize
 									mov dwXT[esi], eax
@@ -585,7 +585,7 @@ _UpdatePosition		proc	_hWnd
 									.repeat
 										mov eax, dwX[edi]
 										mov dwX[ebx], eax
-										add eax, dwSnakeSize	;¸üĞÂ´òÓ¡ÖÕµã×ø±ê
+										add eax, dwSnakeSize	;æ›´æ–°æ‰“å°ç»ˆç‚¹åæ ‡
 										mov dwXT[ebx], eax
 										mov eax, dwY[edi]
 										mov dwY[ebx], eax
@@ -601,7 +601,7 @@ _UpdatePosition		endp
 
 ;***************************************************************************************
 ;
-;Ãæ°å»æÖÆº¯Êı
+;é¢æ¿ç»˜åˆ¶å‡½æ•°
 ;
 ;***************************************************************************************
 _DrawBorad			proc			_hDC
@@ -609,26 +609,26 @@ _DrawBorad			proc			_hDC
 
 					invoke 			KillTimer, hWinMain, ID_TIMER
 
-					;´´½¨Ë«»º³åDC
-					invoke			GetDC, hWinMain											;»ñÈ¡½çÃæDC
+					;åˆ›å»ºåŒç¼“å†²DC
+					invoke			GetDC, hWinMain											;è·å–ç•Œé¢DC
 					mov				@hdc, eax
-					invoke			CreateCompatibleDC, @hdc								;´´½¨¼æÈİDC
+					invoke			CreateCompatibleDC, @hdc								;åˆ›å»ºå…¼å®¹DC
 					mov				@hDCTemp, eax
-					invoke			CreateCompatibleBitmap, @hdc, 410, 410					;´´½¨¼æÈİÎ»Í¼
+					invoke			CreateCompatibleBitmap, @hdc, 410, 410					;åˆ›å»ºå…¼å®¹ä½å›¾
 					mov				@hBMP, eax
-					invoke			SelectObject, @hDCTemp, @hBMP							;½«Î»Í¼Ñ¡ÈëDC
+					invoke			SelectObject, @hDCTemp, @hBMP							;å°†ä½å›¾é€‰å…¥DC
 					invoke			ReleaseDC, hWinMain, @hdc		
 					invoke			SelectObject, @hDCTemp, hWhiteBrush
-					invoke			PatBlt, @hDCTemp, 0, 0, 420, 420, PATCOPY				;¸´ÖÆ
+					invoke			PatBlt, @hDCTemp, 0, 0, 420, 420, PATCOPY				;å¤åˆ¶
 
-					;»æÖÆÓÎÏ·½çÃæ±ß¿ò
+					;ç»˜åˆ¶æ¸¸æˆç•Œé¢è¾¹æ¡†
 					invoke			SelectObject, _hDC, hBorderPen
-					invoke			Rectangle, _hDC, 10, 10, 30, 430   ;×óÊúÏß
-					invoke			Rectangle, _hDC, 10, 10, 430, 30	 ;ÉÏºáÏß
-					invoke			Rectangle, _hDC, 410, 29, 430, 430   ;ÓÒÊúÏß
-					invoke			Rectangle, _hDC, 10, 410, 430, 430   ;ÏÂºáÏß
+					invoke			Rectangle, _hDC, 10, 10, 30, 430   ;å·¦ç«–çº¿
+					invoke			Rectangle, _hDC, 10, 10, 430, 30	 ;ä¸Šæ¨ªçº¿
+					invoke			Rectangle, _hDC, 410, 29, 430, 430   ;å³ç«–çº¿
+					invoke			Rectangle, _hDC, 10, 410, 430, 430   ;ä¸‹æ¨ªçº¿
 
-					;»æÖÆÉßÍ·²¿
+					;ç»˜åˆ¶è›‡å¤´éƒ¨
 					mov				edx, dwSnakeSize 
 					mov				ebx, dwSnakeLen
 					sub				ebx, 1
@@ -636,7 +636,7 @@ _DrawBorad			proc			_hDC
 					invoke			SelectObject, @hDCTemp, hSnakeHeadPen
 					invoke			Rectangle, @hDCTemp, dwX[ebx], dwY[ebx], dwXT[ebx], dwYT[ebx]
 
-					;»æÖÆÉßÉíÌå²¿·Ö
+					;ç»˜åˆ¶è›‡èº«ä½“éƒ¨åˆ†
 					invoke			SelectObject, @hDCTemp, hSnakeBodyPen
 					mov				ebx, dwSnakeLen
 					.if				ebx >= 2
@@ -648,7 +648,7 @@ _DrawBorad			proc			_hDC
 									.until			ebx == 0
 					.endif
 
-					;»æÖÆÁÔÎï
+					;ç»˜åˆ¶çŒç‰©
 					invoke			SelectObject, @hDCTemp, hFoodPen
 					mov				eax, dwNextX
 					add				eax, dwSnakeSize
@@ -657,7 +657,7 @@ _DrawBorad			proc			_hDC
 					invoke			Rectangle, @hDCTemp, dwNextX, dwNextY, eax, ebx
 					invoke			DeleteObject, eax
 
-					;wk »æÖÆÕÏ°­Îï
+					;wk ç»˜åˆ¶éšœç¢ç‰©
 					invoke			SelectObject, @hDCTemp, hBarrierPen
 					mov 			ebx, barrierNum
 					imul			ebx, 4
@@ -666,9 +666,9 @@ _DrawBorad			proc			_hDC
 						invoke		Rectangle, @hDCTemp, barrierX[ebx], barrierY[ebx], barrierXT[ebx], barrierYT[ebx]
 					.until			ebx == 0
 
-					;ÎªÁË±ÜÃâ½çÃæÉÁË¸£¬½«ĞÂ½¨DCÖĞµÄ»­Ãæ¿½±´µ½Ö÷½çÃæDCÖĞ
+					;ä¸ºäº†é¿å…ç•Œé¢é—ªçƒï¼Œå°†æ–°å»ºDCä¸­çš„ç”»é¢æ‹·è´åˆ°ä¸»ç•Œé¢DCä¸­
 					invoke			BitBlt, _hDC, 30, 30, 410, 410, @hDCTemp, 30, 30, SRCCOPY
-					;É¾³ıDC
+					;åˆ é™¤DC
 					invoke			DeleteDC, @hDCTemp	
 					invoke SetTimer, hWinMain, ID_TIMER, dwTime, NULL
 
@@ -678,23 +678,23 @@ _DrawBorad			endp
 
 ;***************************************************************************************
 ;
-;ÓÃÓÚ»æ»­ÓÒ²àĞÅÏ¢ÏÔÊ¾±ß¿ò
+;ç”¨äºç»˜ç”»å³ä¾§ä¿¡æ¯æ˜¾ç¤ºè¾¹æ¡†
 ;
 ;***************************************************************************************
 _DrawMsgBorder	proc			_hDC
-					invoke			SelectObject, _hDC, hWhiteBrush	; Ê¹ÓÃÉîÉ«±³¾°»­Ë¢
-					invoke			PatBlt, _hDC, 430, 10, 180, 420, PATCOPY	; Ìî³äÓÒ²àĞÅÏ¢Çø±³¾°
-					invoke			SelectObject, _hDC, hBorderPen	; »æÖÆ¿Æ¼¼À¶±ß¿ò
-					invoke			Rectangle, _hDC, 430, 10, 610 , 30		; ÉÏºáÏß
-					invoke			Rectangle, _hDC, 430, 210, 610 , 230	; ÖĞºáÏß
-					invoke			Rectangle, _hDC, 430, 410, 610 , 430	; µ×²¿ºáÏß
-					invoke			Rectangle, _hDC, 610, 10, 630 , 430		; ÓÒ²àÊúÏß
+					invoke			SelectObject, _hDC, hWhiteBrush	; ä½¿ç”¨æ·±è‰²èƒŒæ™¯ç”»åˆ·
+					invoke			PatBlt, _hDC, 430, 10, 180, 420, PATCOPY	; å¡«å……å³ä¾§ä¿¡æ¯åŒºèƒŒæ™¯
+					invoke			SelectObject, _hDC, hBorderPen	; ç»˜åˆ¶ç§‘æŠ€è“è¾¹æ¡†
+					invoke			Rectangle, _hDC, 430, 10, 610 , 30		; ä¸Šæ¨ªçº¿
+					invoke			Rectangle, _hDC, 430, 210, 610 , 230	; ä¸­æ¨ªçº¿
+					invoke			Rectangle, _hDC, 430, 410, 610 , 430	; åº•éƒ¨æ¨ªçº¿
+					invoke			Rectangle, _hDC, 610, 10, 630 , 430		; å³ä¾§ç«–çº¿
 					ret
 _DrawMsgBorder	endp
 
 ;***************************************************************************************
 ;
-;Òş²Ø²Ëµ¥´°¿Ú
+;éšè—èœå•çª—å£
 ;
 ;***************************************************************************************
 _hideMenuWindow		proc			uses ebx, hWnd
@@ -709,7 +709,7 @@ _hideMenuWindow		endp
 
 ;***************************************************************************************
 ;
-;ÏÔÊ¾²Ëµ¥´°¿Ú
+;æ˜¾ç¤ºèœå•çª—å£
 ;
 ;***************************************************************************************
 _showMenuWindow		proc			uses ebx, hWnd
@@ -729,7 +729,7 @@ _showMenuWindow		endp
 
 ;***************************************************************************************
 ;
-;ÏÔÊ¾Ñ¡ÔñÄ£Ê½´°¿Ú
+;æ˜¾ç¤ºé€‰æ‹©æ¨¡å¼çª—å£
 ;
 ;***************************************************************************************
 _showModuleWindow	proc			uses ebx, hWnd
@@ -751,7 +751,7 @@ _showModuleWindow	endp
 
 ;***************************************************************************************
 ;
-;Òş²ØÑ¡ÔñÄ£Ê½´°¿Ú
+;éšè—é€‰æ‹©æ¨¡å¼çª—å£
 ;
 ;***************************************************************************************
 _hideModuleWindow	proc			uses ebx, hWnd
@@ -771,13 +771,13 @@ _hideModuleWindow	endp
 
 ;***************************************************************************************
 ;
-;ÏÔÊ¾ĞÂÓÎÏ·µÄ´°¿Ú
+;æ˜¾ç¤ºæ–°æ¸¸æˆçš„çª—å£
 ;
 ;***************************************************************************************
 _showGameWindow		proc			hWnd
 					local			@stRect:RECT
 					
-					;ĞèÒªÖØ»æµÄ¾ØĞÎÇøÓò
+					;éœ€è¦é‡ç»˜çš„çŸ©å½¢åŒºåŸŸ
 					mov @stRect.left, 0
 					mov @stRect.right, 656
 					mov @stRect.top, 0
@@ -804,13 +804,13 @@ _showGameWindow		endp
 
 ;***************************************************************************************
 ;
-;Òş²ØĞÂÓÎÏ·µÄ´°¿Ú
+;éšè—æ–°æ¸¸æˆçš„çª—å£
 ;
 ;***************************************************************************************
 
 _hideGameWindow		proc			hWnd
 					local			@stRect:RECT
-					;ĞèÒªÖØ»æµÄ¾ØĞÎÇøÓò
+					;éœ€è¦é‡ç»˜çš„çŸ©å½¢åŒºåŸŸ
 					mov @stRect.left, 0
 					mov @stRect.right, 656
 					mov @stRect.top, 0
@@ -836,37 +836,37 @@ _hideGameWindow		endp
 
 ;***************************************************************************************
 ;
-;ÏûÏ¢º¯Êı£¬´¦Àí¸÷ÖÖÏûÏ¢
+;æ¶ˆæ¯å‡½æ•°ï¼Œå¤„ç†å„ç§æ¶ˆæ¯
 ;
 ;***************************************************************************************
 _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 					local			@stPS:PAINTSTRUCT
 					local			@stRect:RECT
 					local			@hDC, @hBMP
-					;ĞèÒªÖØ»æµÄ¾ØĞÎÇøÓò
+					;éœ€è¦é‡ç»˜çš„çŸ©å½¢åŒºåŸŸ
 					mov @stRect.left, 30
 					mov @stRect.right, 410
 					mov @stRect.top, 30
 					mov @stRect.bottom, 410
-					.if				uMsg == WM_TIMER										;¼ÆÊ±Æ÷µ½Ê±
+					.if				uMsg == WM_TIMER										;è®¡æ—¶å™¨åˆ°æ—¶
 									invoke 	_UpdatePosition, hWnd
-									;ÕâÀï¿ÉÒÔ¾«È·ÉèÖÃÖØ»æÇøÓòÊ¹µÃĞ§ÂÊ¸ü¸ß
-									invoke 	InvalidateRect, hWnd, addr @stRect, FALSE		;¶¨Ê±Æ÷µ½Ê±,·¢ËÍÖØ»æÃüÁî£¬µ«ÊÇ²»Ë¢ĞÂ½çÃæ
+									;è¿™é‡Œå¯ä»¥ç²¾ç¡®è®¾ç½®é‡ç»˜åŒºåŸŸä½¿å¾—æ•ˆç‡æ›´é«˜
+									invoke 	InvalidateRect, hWnd, addr @stRect, FALSE		;å®šæ—¶å™¨åˆ°æ—¶,å‘é€é‡ç»˜å‘½ä»¤ï¼Œä½†æ˜¯ä¸åˆ·æ–°ç•Œé¢
 					.elseif			uMsg == WM_PAINT
 									invoke BeginPaint, hWnd, addr @stPS
 									mov @hDC, eax
 									.IF	menuFlag == 1
-										invoke _DrawBorad, @hDC									;µ÷ÓÃ»æ»­½çÃæº¯Êı
-										invoke _DrawMsgBorder, @hDC								;»æ»­ÓÒ²à±ß¿ò
+										invoke _DrawBorad, @hDC									;è°ƒç”¨ç»˜ç”»ç•Œé¢å‡½æ•°
+										invoke _DrawMsgBorder, @hDC								;ç»˜ç”»å³ä¾§è¾¹æ¡†
 									.ELSE 
 										invoke			SelectObject, @hDC, hWhiteBrush
 										invoke			PatBlt, @hDC, 0, 0, 656, 479, PATCOPY
 									.ENDIF
 									invoke EndPaint, hWnd, addr @stPS
 					.elseif			uMsg == WM_CREATE
-									; invoke SetTimer, hWnd, ID_TIMER, dwTime, NULL			;ÉèÖÃ¶¨Ê±Æ÷
+									; invoke SetTimer, hWnd, ID_TIMER, dwTime, NULL			;è®¾ç½®å®šæ—¶å™¨
 									
-									;´´½¨±êÌâÏÔÊ¾ÇøÓò
+									;åˆ›å»ºæ ‡é¢˜æ˜¾ç¤ºåŒºåŸŸ
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szEdit, offset szClassName,\
 											WS_CHILD or WS_VISIBLE,\
@@ -877,7 +877,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_big, NULL
 
-									;ĞÂÓÎÏ·°´Å¥
+									;æ–°æ¸¸æˆæŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset szNewGame,\
 											WS_CHILD or WS_VISIBLE or BS_FLAT,\
@@ -888,7 +888,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;ÉèÖÃÄ£Ê½°´Å¥
+									;è®¾ç½®æ¨¡å¼æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset szSetModule,\
 											WS_CHILD or WS_VISIBLE or BS_FLAT,\
@@ -899,7 +899,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;°ïÖú°´Å¥
+									;å¸®åŠ©æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset szHelp,\
 											WS_CHILD or WS_VISIBLE or BS_FLAT,\
@@ -910,7 +910,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 									
-									;¹ØÓÚ°´Å¥
+									;å…³äºæŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset szAbout,\
 											WS_CHILD or WS_VISIBLE or BS_FLAT,\
@@ -921,7 +921,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;¼ÌĞø°´Å¥
+									;ç»§ç»­æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset szContinue,\
 											WS_CHILD or BS_FLAT,\
@@ -935,7 +935,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 
 									;----------------------------------------------------------
 									
-									;ÈëÃÅÄ£Ê½ÉèÖÃ°´Å¥
+									;å…¥é—¨æ¨¡å¼è®¾ç½®æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset dwMODULESTARTER,\
 											WS_CHILD or BS_FLAT,\
@@ -946,7 +946,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;¼òµ¥Ä£Ê½ÉèÖÃ°´Å¥
+									;ç®€å•æ¨¡å¼è®¾ç½®æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset dwMODULESIMPLE,\
 											WS_CHILD or BS_FLAT,\
@@ -957,7 +957,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;½ø½×Ä£Ê½ÉèÖÃ°´Å¥
+									;è¿›é˜¶æ¨¡å¼è®¾ç½®æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset dwMODULEADVANCED,\
 											WS_CHILD or BS_FLAT,\
@@ -968,7 +968,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_small, NULL
 
-									;À§ÄÑÄ£Ê½ÉèÖÃ°´Å¥
+									;å›°éš¾æ¨¡å¼è®¾ç½®æŒ‰é’®
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szButton, offset dwMODULEHARD,\
 											WS_CHILD or BS_FLAT,\
@@ -981,7 +981,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 
 									;----------------------------------------------------------
 									
-									;´´½¨·ÖÊıÏÔÊ¾ÇøÓò
+									;åˆ›å»ºåˆ†æ•°æ˜¾ç¤ºåŒºåŸŸ
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szEdit, offset dwSCORE,\
 											WS_CHILD  ,\
@@ -1002,7 +1002,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_Show, NULL
 
-									;´´½¨Ä£Ê½ÏÔÊ¾ÇøÓò
+									;åˆ›å»ºæ¨¡å¼æ˜¾ç¤ºåŒºåŸŸ
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szEdit, offset dwMODULE,\
 											WS_CHILD  ,\
@@ -1022,7 +1022,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											WM_SETFONT,
 											hFont_Show, NULL
 
-									;´´½¨ËÙ¶ÈÏÔÊ¾ÇøÓò
+									;åˆ›å»ºé€Ÿåº¦æ˜¾ç¤ºåŒºåŸŸ
 									invoke	CreateWindowEx, ES_LEFT,\
 											offset szEdit, offset dwSPEED,\
 											WS_CHILD  ,\
@@ -1043,7 +1043,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											hFont_Show, NULL
 
 
-									;ÔİÍ£/¿ªÊ¼/ÖØÍæ°´Å¥
+									;æš‚åœ/å¼€å§‹/é‡ç©æŒ‰é’®
 									invoke	CreateWindowEx, NULL,\
 											offset szButton, offset szButton_Stop,\
 											WS_CHILD   or BS_FLAT,\
@@ -1058,25 +1058,25 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 					.elseif			uMsg == WM_KEYDOWN
 									mov eax,wParam
 									mov ebx, dwDirection
-									.if	eax == VK_UP													;w¼ü±íÊ¾ÏòÉÏ
+									.if	eax == VK_UP													;wé”®è¡¨ç¤ºå‘ä¸Š
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_UP,0		
-									.elseif eax == VK_DOWN												;s¼ü±íÊ¾ÏòÏÂ
+									.elseif eax == VK_DOWN												;sé”®è¡¨ç¤ºå‘ä¸‹
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_DOWN,0
-									.elseif eax == VK_LEFT												;a¼ü±íÊ¾Ïò×ó
+									.elseif eax == VK_LEFT												;aé”®è¡¨ç¤ºå‘å·¦
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_LEFT,0
-									.elseif eax == VK_RIGHT												;d¼ü±íÊ¾ÏòÓÒ
+									.elseif eax == VK_RIGHT												;dé”®è¡¨ç¤ºå‘å³
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_RIGHT,0
-									.elseif	eax == 87													;w¼ü±íÊ¾ÏòÉÏ
+									.elseif	eax == 87													;wé”®è¡¨ç¤ºå‘ä¸Š
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_UP,0		
-									.elseif eax == 83													;s¼ü±íÊ¾ÏòÏÂ
+									.elseif eax == 83													;sé”®è¡¨ç¤ºå‘ä¸‹
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_DOWN,0
-									.elseif eax == 65													;a¼ü±íÊ¾Ïò×ó
+									.elseif eax == 65													;aé”®è¡¨ç¤ºå‘å·¦
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_LEFT,0
-									.elseif eax == 68													;d¼ü±íÊ¾ÏòÓÒ
+									.elseif eax == 68													;dé”®è¡¨ç¤ºå‘å³
 											invoke _ProcWinMain,hWnd,WM_COMMAND,ID_RIGHT,0
 									.endif
 
-									;********************************¿ÉÒÔ×ÔÓÉ¼ÓËÙ
+									;********************************å¯ä»¥è‡ªç”±åŠ é€Ÿ
 									; .if SpeedFlag == 1
 									; 		invoke 	KillTimer, hWnd, ID_TIMER
 									; 		invoke 	_UpdatePosition, hWnd
@@ -1091,7 +1091,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 									mov eax,wParam
 									mov ebx, dwStep		
 									mov esi, dwDirection
-									.if	eax == ID_UP && ButtonFlag < 2 && esi != 2					;ÉèÖÃÉß²»ÄÜ×ªÏòÏà·´·½Ïò
+									.if	eax == ID_UP && ButtonFlag < 2 && esi != 2					;è®¾ç½®è›‡ä¸èƒ½è½¬å‘ç›¸åæ–¹å‘
 											mov dwDirection, 1
 									.elseif eax == ID_DOWN && ButtonFlag != 2 && esi != 1	
 											mov dwDirection, 2
@@ -1103,29 +1103,29 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											mov dwDirectionTemp, esi
 											mov dwDirection, 0
 											mov menuFlag, 0
-											.IF	ButtonFlag == 2		;ÖØ¿ªÓÎÏ·
+											.IF	ButtonFlag == 2		;é‡å¼€æ¸¸æˆ
 												mov 	ButtonFlag, 0
 												mov		continueBtnFlag, 0
-												invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Stop ;°´Å¥ÏÔÊ¾ÔİÍ£
+												invoke SendMessage,hButton,WM_SETTEXT,0,addr szButton_Stop ;æŒ‰é’®æ˜¾ç¤ºæš‚åœ
 											.ENDIF
 											invoke	_hideGameWindow, hWnd
 											invoke	_showMenuWindow, hWnd
 											invoke 	KillTimer, hWnd, ID_TIMER
-									.elseif	eax == ID_MODULESTARTER		;ÈëÃÅ¼¶ÄÑ¶È										;´¦ÀíËÙ¶ÈÇĞ»»°´Å¥
+									.elseif	eax == ID_MODULESTARTER		;å…¥é—¨çº§éš¾åº¦										;å¤„ç†é€Ÿåº¦åˆ‡æ¢æŒ‰é’®
 											mov	dwModuleflag, 0
-											mov dwTime, 500				;ÖØĞÂÉèÖÃ¶¨Ê±Æ÷¼ä¸ô
+											mov dwTime, 500				;é‡æ–°è®¾ç½®å®šæ—¶å™¨é—´éš”
 											invoke	_hideModuleWindow, hWnd
 											invoke	_showMenuWindow, hWnd
-									.elseif	eax == ID_MODULESIMPLE		;¼òµ¥ÄÑ¶È	
+									.elseif	eax == ID_MODULESIMPLE		;ç®€å•éš¾åº¦	
 											mov dwModuleflag, 1
 											mov dwTime, 300
 											invoke	_hideModuleWindow, hWnd
 											invoke	_showMenuWindow, hWnd
-									.elseif eax == ID_MODULEADVANCED	;½ø½×ÄÑ¶È
+									.elseif eax == ID_MODULEADVANCED	;è¿›é˜¶éš¾åº¦
 											mov dwModuleflag, 2
 											invoke	_hideModuleWindow, hWnd
 											invoke	_showMenuWindow, hWnd
-									.elseif	eax == ID_MODULEHARD		;À§ÄÑÄÑ¶È
+									.elseif	eax == ID_MODULEHARD		;å›°éš¾éš¾åº¦
 											mov dwModuleflag, 3
 											mov dwTime, 100	
 											invoke	_hideModuleWindow, hWnd
@@ -1137,14 +1137,14 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 										invoke	MessageBox, hWnd, offset szHelpText, offset szHelp, MB_OK	
 									.elseif eax == ID_About
 										invoke	MessageBox, hWnd, offset szAboutText, offset szAbout, MB_OK	
-									.elseif	eax == ID_NewGame		;ĞÂÓÎÏ·
+									.elseif	eax == ID_NewGame		;æ–°æ¸¸æˆ
 											mov		continueBtnFlag, 1
 											mov 	ButtonFlag, 1
 											invoke 	_Init
 											mov		menuFlag, 1	
 											invoke	_hideMenuWindow, hWnd
 											invoke	_showGameWindow, hWnd
-											invoke 	SetTimer, hWnd, ID_TIMER, dwTime, NULL	;ÉèÖÃ¶¨Ê±Æ÷
+											invoke 	SetTimer, hWnd, ID_TIMER, dwTime, NULL	;è®¾ç½®å®šæ—¶å™¨
 									.elseif	eax == ID_Continue
 											mov edx, dwDirectionTemp
 											mov dwDirection, edx
@@ -1155,7 +1155,7 @@ _ProcWinMain		proc			uses ebx edi esi hWnd, uMsg, wParam, lParam
 											invoke SetTimer, hWnd, ID_TIMER, dwTime, NULL
 									.endif 
 									.if    	ButtonFlag != 2
-											invoke SetFocus, hWnd										;ÓÎÏ·ÖĞ×ÜÊÇÈÃ´°¿Ú»ñµÃ½¹µã
+											invoke SetFocus, hWnd										;æ¸¸æˆä¸­æ€»æ˜¯è®©çª—å£è·å¾—ç„¦ç‚¹
 									.endif
 									
 					.elseif			uMsg == WM_CLOSE
@@ -1173,7 +1173,7 @@ _ProcWinMain		endp
 
 ;***************************************************************************************
 ;
-;×¢²á²¢´´½¨´°¿Úº¯Êı
+;æ³¨å†Œå¹¶åˆ›å»ºçª—å£å‡½æ•°
 ;
 ;***************************************************************************************
 _WinMain			proc
@@ -1182,7 +1182,7 @@ _WinMain			proc
 					invoke			GetModuleHandle, NULL
 					mov				hInstance, eax
 
-					;×¢²á´°¿ÚÀà
+					;æ³¨å†Œçª—å£ç±»
 					invoke			RtlZeroMemory, addr @stWndClass, sizeof @stWndClass
 					invoke			LoadIcon, hInstance, IDI_ICON
 					mov				@stWndClass.hIcon, eax
@@ -1198,7 +1198,7 @@ _WinMain			proc
 					mov				@stWndClass.lpszClassName, offset szClassName
 					invoke			RegisterClassEx, addr @stWndClass
 
-					;½¨Á¢²¢ÏÔÊ¾´°¿Ú
+					;å»ºç«‹å¹¶æ˜¾ç¤ºçª—å£
 					invoke			CreateWindowEx,NULL, \
 									offset szClassName, offset szClassName,\
 									 WS_CAPTION or WS_SYSMENU or WS_MINIMIZEBOX,\
@@ -1209,7 +1209,7 @@ _WinMain			proc
 					invoke			ShowWindow, hWinMain, SW_SHOWNORMAL
 					invoke			UpdateWindow, hWinMain
 
-					;ÏûÏ¢Ñ­»·
+					;æ¶ˆæ¯å¾ªç¯
 					.while			TRUE
 									invoke GetMessage, addr @stMsg, NULL, 0, 0
 									.break .if eax == 0
@@ -1221,17 +1221,17 @@ _WinMain			endp
 
 ;***************************************************************************************
 ;
-;Ö÷º¯Êı£¬³ÌĞòÈë¿Ú
+;ä¸»å‡½æ•°ï¼Œç¨‹åºå…¥å£
 ;
 ;***************************************************************************************
 main				proc
 
-					;µ÷ÓÃ³õÊ¼»¯º¯Êı³õÊ¼»¯¼Ä´æÆ÷µÄÖµ
+					;è°ƒç”¨åˆå§‹åŒ–å‡½æ•°åˆå§‹åŒ–å¯„å­˜å™¨çš„å€¼
 					invoke			_Init
 					invoke			_createFont
 					invoke			_createPens				
 
-					;µ÷ÓÃ´°¿Ú×¢²áº¯Êı
+					;è°ƒç”¨çª—å£æ³¨å†Œå‡½æ•°
 					call			_WinMain
 					invoke			ExitProcess, NULL
 main				endp
