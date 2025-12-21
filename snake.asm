@@ -205,7 +205,7 @@ _Init				proc
 					mov dwSnakeLen, 1
 
 					;初始化方向
-					mov dwDirection, 2
+					mov dwDirection, 1
 
 					;wk,障碍物初始个数为 5
 					mov				barrierNum, 5
@@ -326,21 +326,21 @@ _createPens			proc
 					mov				hBorderPen, eax
 
 					;蛇头蛇身画笔
-					mov				eax, 000B038h	; BGR格式（对应RGB #38B000）
+					mov				eax, 071CC2Eh	; 
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeHeadPen, eax
 
-					mov				eax, 000E070h	; BGR格式（对应RGB #70E000）
+					mov				eax, 0A6DF92h	; 
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeBodyPen, eax
 
 					;猎物画笔
-					mov				eax, 08525F7h	; BGR格式（对应RGB #F72585）
+					mov				eax, 0FFB974h	; 
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hFoodPen, eax
 
 					;wk 障碍物画笔
-					mov				eax, 7D756Ch	; BGR格式（对应RGB #6C757D）
+					mov				eax, 07576ffh	; 
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hBarrierPen, eax
 
