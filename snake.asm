@@ -135,8 +135,8 @@ szHelpText2			byte			'模式说明:', LF,
 									'↑这是默认的模式', LF,
 									'进阶: 贪吃蛇嘴痒难耐，渴望捕食，它将从猎捕的食物中汲取能量，获得递增的移动速度', LF,
 									'困难: 你已经是一条成熟的大蛇了，贪吃蛇将以全速猎捕食物', 0
-szAboutText			byte			'本游戏是2022北京理工大学汇编语言与接口技术课程分组实验作业成果，贡献者:', LF,
-									'rpy, wk, jjy', LF,
+szAboutText			byte			'本游戏是2025北京理工大学汇编语言与接口技术课程分组实验作业成果，小组成员:', LF,
+									'ljl, zsh, zc, ld', LF,
 									'实验的部分思路参考了网络博客。', 0
 
 .code
@@ -205,7 +205,7 @@ _Init				proc
 					mov dwSnakeLen, 1
 
 					;初始化方向
-					mov dwDirection, 1
+					mov dwDirection, 3
 
 					;wk,障碍物初始个数为 6
 					mov				barrierNum, 6
