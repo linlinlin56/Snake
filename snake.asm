@@ -207,8 +207,8 @@ _Init				proc
 					;初始化方向
 					mov dwDirection, 1
 
-					;wk,障碍物初始个数为 5
-					mov				barrierNum, 5
+					;wk,障碍物初始个数为 6
+					mov				barrierNum, 6
 					;障碍物位置初始化
 					mov esi, 0
 					.repeat
@@ -316,31 +316,30 @@ _createFont			endp
 ;***************************************************************************************
 _createPens			proc
 					;初始化背景画刷
-					mov				eax, 02E1A1Ah		; BGR格式（对应RGB #1A1A2E）
+					mov				eax, 0ffffffh		
 					invoke			CreateSolidBrush, eax
 					mov				hWhiteBrush, eax
 
 					;游戏边框画笔
-					mov				eax, 0F0C94Ch	; BGR格式（对应RGB #4CC9F0）
-					invoke			CreatePen, PS_INSIDEFRAME, 2, eax	; 边框加粗到2像素
+					mov				eax, 0473A2Ch	;BGR
+					invoke			CreatePen, PS_INSIDEFRAME, 1, eax
 					mov				hBorderPen, eax
 
 					;蛇头蛇身画笔
-					mov				eax, 071CC2Eh	; 
+					mov				eax, 071CC2Eh
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeHeadPen, eax
 
-					mov				eax, 0A6DF92h	; 
+					mov				eax, 0A6DF92h
+					; mov				eax, 0ffh + 0d3h * 100h + 01h * 10000h
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hSnakeBodyPen, eax
-
 					;猎物画笔
-					mov				eax, 0FFB974h	; 
+					mov				eax, 0FFB974h
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hFoodPen, eax
-
 					;wk 障碍物画笔
-					mov				eax, 07576ffh	; 
+					mov				eax, 07576ffh
 					invoke			CreatePen, PS_SOLID, dwSnakeSize, eax
 					mov				hBarrierPen, eax
 
@@ -681,16 +680,14 @@ _DrawBorad			endp
 ;用于绘画右侧信息显示边框
 ;
 ;***************************************************************************************
-_DrawMsgBorder	proc			_hDC
-					invoke			SelectObject, _hDC, hWhiteBrush	; 使用深色背景画刷
-					invoke			PatBlt, _hDC, 430, 10, 180, 420, PATCOPY	; 填充右侧信息区背景
-					invoke			SelectObject, _hDC, hBorderPen	; 绘制科技蓝边框
-					invoke			Rectangle, _hDC, 430, 10, 610 , 30		; 上横线
-					invoke			Rectangle, _hDC, 430, 210, 610 , 230	; 中横线
-					invoke			Rectangle, _hDC, 430, 410, 610 , 430	; 底部横线
-					invoke			Rectangle, _hDC, 610, 10, 630 , 430		; 右侧竖线
+_DrawMsgBorder		proc			_hDC
+					invoke			SelectObject, _hDC, hBorderPen
+					invoke			Rectangle, _hDC, 430, 10, 610 , 30		;上横线
+					invoke			Rectangle, _hDC, 430, 210, 610 , 230	;中横线
+					invoke			Rectangle, _hDC, 430, 410, 610 , 430	;底部横线
+					invoke			Rectangle, _hDC, 610, 10, 630 , 430		;右侧竖线
 					ret
-_DrawMsgBorder	endp
+_DrawMsgBorder		endp
 
 ;***************************************************************************************
 ;
